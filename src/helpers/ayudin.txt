@@ -1,0 +1,34 @@
+REACT --> Librería de javascript para el UI
+
+Característica más importante de React --> VIRTUAL DOM (crea una copia de nuestro DOM real y evita que se cargue el DOM al vicio. Lo que resulta en que nuestra app sea más rápida y tenga un mejor rendimiento)
+
+React --> te compone una página por un monton de componentes
+
+Componentes --> Bloque de código que devuelve lenguaje de marcado
+
+Hooks --> Los hooks son funciones que te permiten manipular el estado y el ciclo de vida del componentes
+
+Estado --> Es simplemente una variable, pero que cuando la cambio, se produce un re render del componente
+
+Si necesito trabajar con un estado --> useState
+
+[estado, setEstado] = useState(estadoInicial)
+
+useEffect(()=>{
+  cuando se monta el componente y ante el cambio de cualquier estado
+})
+useEffect(()=>{
+  cuando se monta el componente y nunca más
+},[])
+useEffect(()=>{
+  cuando se monta el componente y cuando cambian los estados del array
+},[estado1, estado2])
+useEffect(()=>{
+return ()=>{
+  cuando se desmonta el componente
+}
+})
+
+React SPA != react-router-DOM
+
+custom hook --> Una función común pero que en el medio utiliza hooks nativos de react
