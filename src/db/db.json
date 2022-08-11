@@ -1,0 +1,48 @@
+{
+  "users":[
+    {
+      "name":"Diego Fernández",
+      "email": "diego@gmail.com",
+      "password":"654321A",
+      "role":"ADMIN"
+    },
+    {
+      "name":"Angel Carrera",
+      "email":"angel@gmail.com",
+      "password":"A123456",
+      "role":"USER"
+    },
+    {
+      "name":"Nahuel de la Vega",
+      "email":"eldueño@gmail.com",
+      "password":"Dueñito123",
+      "role":"ADMIN"
+    }
+  ],
+  "bikes":[
+    {
+      "id":1,
+      "model":"SHIMANO",
+      "img":"",
+      "price":130000
+    },
+    {
+      "id":2,
+      "model":"TREK",
+      "img":"",
+      "price":100000
+    },
+    {
+      "id":3,
+      "model":"FIREBIRD",
+      "img":"",
+      "price":150000
+    },
+    {
+      "id":4,
+      "model":"VENZO",
+      "img":"",
+      "price":200000
+    }
+  ]
+}

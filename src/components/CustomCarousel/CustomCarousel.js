@@ -11,15 +11,15 @@ const CustomCarousel = ({images}) => {
   return ( 
     <Carousel>
       {
-        images.map(image=>{
-          return <Carousel.Item>
+        images.map((image,index)=>
+          <Carousel.Item key={index}>
           <MyImg
             className="d-block w-100"
             src={image.src}
             alt={image.alt}
           />
         </Carousel.Item>
-      })
+      )
     }
     </Carousel>
    );

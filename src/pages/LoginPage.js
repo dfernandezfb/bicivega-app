@@ -1,9 +1,10 @@
-import Header from "../components/Header/Header";
+import LoginForm from "../components/LoginForm/LoginForm";
 
-const LoginPage = () => {
+const LoginPage = ({user,setUser}) => {
   return ( 
     <>
-      <h1>login</h1>
+      <h1 className="my-5">Ingresa al mundo de las bicis de la mano del más experimentado</h1>
+      <LoginForm user={user} setUser={setUser}/>
     </>
     );
 }

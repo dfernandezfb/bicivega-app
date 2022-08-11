@@ -1,12 +1,11 @@
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import {GrBike} from 'react-icons/gr'
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Header.css'
 
-const Header = () => {
-  const user = localStorage.getItem('user');
+const Header = ({user,setUser}) => {
   const signOut = ()=>{
-    localStorage.clear();
+    setUser(null)
   }
   return ( 
     <Navbar className='bg-oxford' expand="lg">
@@ -17,10 +16,12 @@ const Header = () => {
         </Navbar.Toggle>
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Link to="/" className='text-beige nav-link'>Home</Link>
             {
               user?
-              <Link to="/" onClick={signOut} className='text-beige nav-link'>Cerrar sesión</Link>
+              <>
+                <Link to="/home" className='text-beige nav-link'>Home</Link>
+                <Link to="/" onClick={signOut} className='text-beige nav-link'>Cerrar sesión</Link>
+              </>
               :
               <Link to="/login" className='text-beige nav-link'>Ingresar</Link>
             }

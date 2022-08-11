@@ -56,3 +56,19 @@ code {
 .text-brass{
   color:var(--antique-brass) !important;
 }
+.btn-oxford{
+  background-color: var(--oxford-blue);
+  color:var(--beige)
+}
+.btn-oxford:hover{
+  background-color: var(--fuzzy-wuzzy);
+  color:var(--space-cadet)
+}
+.btn-beige{
+  background-color: var(--beige);
+  color: var(--oxford-blue);
+}
+.btn-beige:hover{
+  background-color: var(--antique-brass);
+  color: var(--fuzzy-wuzzy);
+}
