@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import BikeCard from "../components/BikeCard/BikeCard";
+import CustomCard from "../components/CustomCard/CustomCard";
 import axiosInstance from "../config/axiosInstance";
 
 const HomePage = () => {
@@ -18,7 +18,8 @@ const HomePage = () => {
   return (
     <div className="container mt-5">
       {
-        bikes.map(bike=><BikeCard
+        bikes.map((bike,index)=><CustomCard
+        key={index}
         title={bike.model} 
         description={`Precio: ${bike.price}`}
         buttonText='Ver detalle'

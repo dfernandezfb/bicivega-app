@@ -20,12 +20,16 @@ const Header = ({user,setUser}) => {
               user?
               <>
                 <Link to="/home" className='text-beige nav-link'>Home</Link>
+                {
+                  user.role === 'ADMIN'?
+                  <Link to="/admin" className='text-beige nav-link'>Administración</Link>
+                  :null
+                }
                 <Link to="/" onClick={signOut} className='text-beige nav-link'>Cerrar sesión</Link>
               </>
               :
               <Link to="/login" className='text-beige nav-link'>Ingresar</Link>
             }
-
           </Nav>
         </Navbar.Collapse>
       </Container>

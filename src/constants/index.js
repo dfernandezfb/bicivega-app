@@ -1,0 +1,1 @@
+export const CONSTANTE_DE_PRUEBA = 'test';

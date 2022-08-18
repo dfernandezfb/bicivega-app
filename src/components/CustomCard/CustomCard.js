@@ -1,7 +1,7 @@
 import { Button, Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
-const BikeCard = ({title, description, img, buttonText,path}) => {
+const CustomCard = ({title, description, img, buttonText,path}) => {
   const navigate = useNavigate()
   const handleClick = ()=>{
     navigate(path)
@@ -20,4 +20,4 @@ const BikeCard = ({title, description, img, buttonText,path}) => {
    );
 }
  
-export default BikeCard;
+export default CustomCard;

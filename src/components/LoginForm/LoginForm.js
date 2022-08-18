@@ -31,13 +31,13 @@ const LoginForm = ({user,setUser}) => {
           setUser(userWithoutPass);
           navigate('/home')
         }else{
-          console.log('Contraseña erronea');
+          alert('Contraseña erronea');
         }
       }else{
-        console.log('Usuario no encontrado');
+        alert('Usuario no encontrado');
       }
     } catch (error) {
-      console.log(error.message);
+      alert('error')
     }
   }
   
