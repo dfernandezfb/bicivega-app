@@ -30,25 +30,19 @@
       "id": 2,
       "model": "TREK",
       "img": "",
-      "price": 100000
+      "price": "350000"
     },
     {
       "id": 3,
       "model": "FIREBIRD",
       "img": "",
-      "price": 150000
+      "price": "170000"
     },
     {
       "id": 4,
       "model": "VENZO",
       "img": "",
       "price": 200000
-    },
-    {
-      "model": "test",
-      "price": 15,
-      "image": "test",
-      "id": 5
     }
   ]
 }
