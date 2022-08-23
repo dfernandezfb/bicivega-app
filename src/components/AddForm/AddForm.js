@@ -1,30 +1,29 @@
 import { useState } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Alert } from "react-bootstrap";
 import axiosInstance from "../../config/axiosInstance";
+import { BIKE_VALUES } from "../../constants";
+import { validationAddBike } from "../../helpers/validations";
+import useForm from './../../hooks/useForm'
 
 const AddForm = ({getBikes , handleCloseAdd}) => {
-  const [values, setValues] = useState({
-    model:'',
-    price:0,
-    image:''
-  });
-  const handleChange = (e)=>{
-    setValues({
-      ...values,
-      [e.target.name] : e.target.value
-    })
-  }
-
-  const handleSubmit = async (e)=>{
+  const [error, setError] = useState(null);
+  const addBike = async (e)=>{
     try {
-      e.preventDefault();
       await axiosInstance.post('/bikes',values);
+      if(!error){
+        handleCloseAdd()
+      }
       getBikes() 
     } catch (error) {
-      alert('Error al cargar nueva bicicleta')
+      // alert('Error al cargar nueva bicicleta')
+      setError('Error al cargar nuevo bicicleta');
+      setTimeout(()=>{
+        setError(null)
+      },3000)
     }
   }
-
+  const {values, handleChange, handleSubmit, errors} = useForm(BIKE_VALUES,addBike,validationAddBike)
+  
   return ( 
     <Form onSubmit={handleSubmit}>
       <Form.Group className="mb-3">
@@ -39,11 +38,26 @@ const AddForm = ({getBikes , handleCloseAdd}) => {
         <Form.Label>Imagen</Form.Label>
         <Form.Control type="text" name="image" onChange={handleChange} value={values.image}/>
       </Form.Group>
-      <Button variant="primary" type="submit" onClick={handleCloseAdd}>
+      <Button variant="primary" type="submit" >
         Agregar
       </Button>
+      {Object.keys(errors).length!=0?
+      Object.values(errors).map(error=>
+        <Alert variant="danger">
+          {error}
+        </Alert>
+        )
+        :null
+      }
     </Form>
   );
 }
  
 export default AddForm;
+
+// {
+//   model:'Shimano',
+//   price:150
+// }
+// Object.keys --> ['model', 'price']
+// Object.values --> ['Shimano', '150']

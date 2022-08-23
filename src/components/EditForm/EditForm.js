@@ -2,19 +2,21 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import axiosInstance from "../../config/axiosInstance";
+import { BIKE_VALUES } from "../../constants";
+import useForm from './../../hooks/useForm'
+
 
 const EditForm = ({getBikes , handleCloseEdit,selected}) => {
-  const [values, setValues] = useState({
-    model:'',
-    price:0,
-    image:''
-  });
-  const handleChange = (e)=>{
-    setValues({
-      ...values,
-      [e.target.name] : e.target.value
-    })
+  const editBike = async (e)=>{
+    try {
+      await axiosInstance.put('/bikes/'+selected,values);
+      getBikes() 
+    } catch (error) {
+      console.log(error.message);
+      alert('Error al cargar nueva bicicleta')
+    }
   }
+  const {values, setValues, handleChange, handleSubmit} = useForm(BIKE_VALUES, editBike);
   const getBike = async()=>{
     try {
       const response = await axiosInstance.get('/bikes/'+selected);
@@ -28,15 +30,6 @@ const EditForm = ({getBikes , handleCloseEdit,selected}) => {
     getBike()
   },[]);
 
-  const handleSubmit = async (e)=>{
-    try {
-      e.preventDefault();
-      await axiosInstance.put('/bikes/'+selected,values);
-      getBikes() 
-    } catch (error) {
-      alert('Error al cargar nueva bicicleta')
-    }
-  }
 
   return ( 
     <Form onSubmit={handleSubmit}>

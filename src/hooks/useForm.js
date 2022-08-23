@@ -1,8 +1,11 @@
+import { useEffect } from "react";
 import { useState } from "react"
 
 
-const useForm = (initialState, submit)=>{
+const useForm = (initialState, submit, validations)=>{
   const [values,setValues] = useState(initialState);
+  const [errors, setErrors] = useState({});
+  const [submitting, setSubmitting] = useState(false)
 
   const handleChange = (e)=>{
     setValues({
@@ -11,15 +14,39 @@ const useForm = (initialState, submit)=>{
     })
   }
 
-  const handleSubmit = ()=>{
-    submit()
+  const handleSubmit = (e)=>{
+    e.preventDefault();
+    if(validations){
+      const validationResult = validations(values);
+      setErrors(validationResult)
+      setTimeout(()=>setErrors({}),3000)
+    }else{
+      setErrors({})
+    }
+    setSubmitting(true)
   }
+
+  useEffect(()=>{
+    if(submitting){
+      if(Object.keys(errors).length===0){
+        submit()
+      }
+    }
+    setSubmitting(false)
+  },[errors])
 
   return {
     handleChange,
     handleSubmit,
     values,
-    setValues
+    setValues,
+    errors
   }
 }
 export default useForm
+
+// {
+//   model:'shimano',
+//   price:10
+// }
+// Object.keys --> ['model','price']
