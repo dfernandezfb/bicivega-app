@@ -1,9 +1,12 @@
+import { useContext } from 'react';
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import {GrBike} from 'react-icons/gr'
 import { Link } from 'react-router-dom';
+import { UserContext } from '../../context/UserContext';
 import './Header.css'
 
-const Header = ({user,setUser}) => {
+const Header = () => {
+  const {user, setUser} = useContext(UserContext)
   const signOut = ()=>{
     setUser(null)
   }

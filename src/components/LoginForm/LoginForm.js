@@ -1,11 +1,11 @@
+import { useContext } from "react";
 import { useState } from "react";
 import { Form, Button } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
-import axiosInstance from "../../config/axiosInstance";
+import { UserContext } from "../../context/UserContext";
 import "./LoginForm.css";
 
-const LoginForm = ({user,setUser}) => {
-  const navigate = useNavigate();
+const LoginForm = () => {
+  const {login} =useContext(UserContext)
   const [values,setValues] = useState({
     email:'',
     password:''
@@ -19,26 +19,8 @@ const LoginForm = ({user,setUser}) => {
     )
   }
   const handleSubmit = async (e)=>{
-    e.preventDefault()
-    try {
-      const response = await axiosInstance.get('/users');
-      const users = response.data
-      const userFound = users.find(user => user.email === values.email );
-      if(userFound){
-        const isOk = userFound.password === values.password;
-        if(isOk){
-          const {password, ...userWithoutPass} = userFound
-          setUser(userWithoutPass);
-          navigate('/home')
-        }else{
-          alert('Contraseña erronea');
-        }
-      }else{
-        alert('Usuario no encontrado');
-      }
-    } catch (error) {
-      alert('error')
-    }
+    e.preventDefault();
+    login(values)
   }
   
 
